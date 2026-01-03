@@ -9,7 +9,7 @@ import { CopyIcon } from "@components/Icons";
 import { Devs } from "@utils/constants";
 import definePlugin from "@utils/types";
 import type { Channel, User } from "@vencord/discord-types";
-import { Clipboard, GuildMemberStore, IconUtils, Menu, Toasts } from "@webpack/common";
+import { GuildMemberStore, IconUtils, Menu, Toasts } from "@webpack/common";
 
 interface UserContextProps {
     channel: Channel;
@@ -36,7 +36,7 @@ function getAvatarUrl(user: User, guildId?: string): string {
 
 async function copyAvatar(url: string) {
     try {
-        await Clipboard.copy(url);
+        await navigator.clipboard.writeText(url);
         Toasts.show({
             message: "Avatar URL kopyalandı!",
             type: Toasts.Type.SUCCESS,
